@@ -8,27 +8,27 @@ These differences will help establish how honey bees and bumble bees differ in p
 differentially partition their resources across environmental contexts.  
 
 
-#### My folder structure:  
+### My folder structure:  
 
 
-WFS-final-project: Parent directory that contains the following directories: data_raw ; data_processed ; scripts ; outputs_figures ; outputs_tables  
+**WFS-final-project**: Parent directory that contains the following directories: data_raw ; data_processed ; scripts ; outputs_figures ; outputs_tables  
 
 
-data_raw: my CSV files that will be untouched  
+**data_raw**: my CSV files that will be untouched  
 
 
-data_processed: My processed CSV finals  
+**data_processed**: My processed CSV finals  
 
 
-scripts: all of the R Scripts that contain my analysis  
+**scripts**: all of the R Scripts that contain my analysis  
 
 
-output_tables: Tables generated from my analysis  
+**output_tables**: Tables generated from my analysis  
 
 
-output_figures: Figures generated from my analysis  
+**output_figures**: Figures generated from my analysis  
 
 
-My data source: This data was collected in central Pennsylvania during the Summer of 2026 via aerial netting of bumble bees and honey bees and removal of pollen with 
+**My data source**: This data was collected in central Pennsylvania during the Summer of 2026 via aerial netting of bumble bees and honey bees and removal of pollen with 
 tweezers. The sample size is 63.
 
