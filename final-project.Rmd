@@ -28,15 +28,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Project Organization
 
-**WFS-final-project: Parent directory that contains the following directories: final-project.Rmd ; data_raw ; data_processed ; scripts ; outputs_figures ; outputs_tables. My data source: This data was collected in central Pennsylvania during the Summer of 2026 via aerial netting of bumble bees and honey bees and removal of pollen with tweezers. The sample size is 63.**
+**WFS-final-project: Parent directory that contains the following directories: final-project.Rmd ; data_raw ; data_processed ; scripts ; outputs_figures ; outputs_tables. My data source: This data was collected in central Pennsylvania during the Summer of 2025 via aerial netting of bumble bees and honey bees and removal of pollen with tweezers. The sample size is 63.**
 
 ```
 WFS-final-project/
 ├── final-project.Rmd
 ├── data_processed
 ├── data_raw/
-│   ├── data_metabarcoding.csv/
-│   └── data_pl.csv/
+│   ├── data_metabarcoding.csv
+│   └── data_pl.csv
 ├── scripts
 └── outputs_figures
 └── outputs_tables
@@ -78,7 +78,7 @@ knitr::kable(data.frame(file = basename(raw_files),
 *This data were collected by Haley Curtis during the summer of 2025. The data were collected from pollen balls of honey bees and bumble bees across multiple habitats and sampling periods throughout the summer. One row represents one bee, the plant genus in its pollen, and the proportion of that plant genus (one bee can have multiple rows).*
 
 ```{r read-file-1}
-file1 <- read.csv("data_metabarcoding.csv", stringsAsFactors = FALSE, na.strings = "")
+file1 <- read.csv("data_raw/data_metabarcoding.csv", stringsAsFactors = FALSE, na.strings = "")
 ```
 
 This file has `r nrow(file1)` rows and `r ncol(file1)` columns. Here are the first few rows:
@@ -112,19 +112,19 @@ str(file1)
 *This data were collected by Haley Curtis during the summer of 2025. The data were collected from pollen balls of honey bees and bumble bees across multiple habitats and sampling periods throughout the summer. One row represents one bee and the protein-to-lipid (P:L) values associated with it.*
 
 ```{r read-file-2}
-file1 <- read.csv("data_pl.csv", stringsAsFactors = FALSE, na.strings = "")
+file2 <- read.csv("data_raw/data_pl.csv", stringsAsFactors = FALSE, na.strings = "")
 ```
 
-This file has `r nrow(file1)` rows and `r ncol(file1)` columns. Here are the first few rows:
+This file has `r nrow(file2)` rows and `r ncol(file2)` columns. Here are the first few rows:
 
 ```{r head-file-2}
-knitr::kable(head(file1))
+knitr::kable(head(file2))
 ```
 
 And here is the type of each column, as R reads it:
 
 ```{r str-file-2}
-str(file1)
+str(file2)
 ```
 
 ### Data dictionary for file 2: data_pl.csv
