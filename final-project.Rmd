@@ -1,0 +1,169 @@
+---
+title: "WFS Final Project"
+author: "Haley Curtis"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+*My data involves DNA metabarcoding and nutrition results from pollen I collected from bumble bees and honey bees during the summer of 2025. The results will tell me the exact plant composition and nutritional value of each pollen sample. The pollen samples were collected by catching bees via aerial netting, placing them on ice, then using sterile forceps to remove pollen balls from their corbiculae (specialized pollen collecting baskets on the hindlegs). Pollen balls were collected from twelve honey bees and twelve bumble bees at each site. Then, the pollen balls were pooled by genus, analyzed for protein-to-lipid ratio, and sent off for DNA metabarcoding. There is data from 63 samples total, with each sample having hundreds of hits to different plants that were detected in the pollen via DNA metabarcoding. The variables I am measuring are sampling period, habitat type, individual site, individual bee sample, bee genus, plant genus, number of reads, total sum reads, proportion of reads, protein content, lipid content, and protein-to-lipid ratio.*
+
+# Research Questions
+
+1. *How does time period impact the protein-to-lipid content of honey bee and bumble bee pollen at different habitat types?*
+2. *Which plants are most important for bumble bees at each time period?*
+3. *Are honey bees and bumble bees collecting from similar or different plants at the same sites and times?*
+
+# Rationale
+
+*The goal of the study is to examine nutritional differences in pollen collected at different time periods, at different habitat types, and by honey bees versus bumble bees. Prior work has shown that bumble bees prefer or require higher protein-to-lipid ratios than honey bees and that forest habitats are better nutritionally for bumble bees. I am interested to see what my data can add concerning how time period influences protein-to-lipid ratios and which plants specifically are causing these ratios to shift. I hope to include this data in a manuscript I am writing this semester.*
+
+# Project Organization
+
+**WFS-final-project: Parent directory that contains the following directories: final-project.Rmd ; data_raw ; data_processed ; scripts ; outputs_figures ; outputs_tables. My data source: This data was collected in central Pennsylvania during the Summer of 2026 via aerial netting of bumble bees and honey bees and removal of pollen with tweezers. The sample size is 63.**
+
+```
+WFS-final-project/
+├── final-project.Rmd
+├── data_processed
+├── data_raw/
+│   ├── data_metabarcoding.csv/
+│   └── data_pl.csv/
+├── scripts
+└── outputs_figures
+└── outputs_tables
+└── README.md
+```
+
+| Folder or file | What it holds |
+|----------------|---------------|
+| `final-project.Rmd` | This report. |
+| `README.md` | A short description of the project. |
+| `data/raw/` | The original data files, exactly as downloaded. These are never edited. |
+| `data/processed` | Cleaned data, and the tables built by the scripts. |
+| `scripts` | The R scripts that process the data. |
+| `output_figures` | Figures produced by the scripts. |
+| `outputs_tables` | Tables produced by the scripts. |
+
+The project is stored in a GitHub repository: <https://github.com/hec5351/WFS-Final-Project>
+
+# Raw Data
+
+*Replace this paragraph with a sentence or two about your data overall: how many files you have, and where they came from.*
+
+These are the files currently in `data_raw/`:
+
+```{r raw-file-list}
+raw_files <- list.files("data_raw", full.names = TRUE)
+knitr::kable(data.frame(file = basename(raw_files),
+                        size_kb = round(file.size(raw_files) / 1024, 1)))
+```
+
+## File 1: data_metabarcoding.csv
+
+- **Source:** *Collected by Haley Curtis during Summer 2025*
+- **Link:** *https://github.com/hec5351/WFS-Final-Project/blob/main/data_raw/data_metabarcoding.csv.*
+- **Date accessed:** *10/08/2026*
+- **License or terms of use:** *Private until publication*
+- **Citation:** *Citation to be generated upon publication*
+
+*This data were collected by Haley Curtis during the summer of 2025. The data were collected from pollen balls of honey bees and bumble bees across multiple habitats and sampling periods throughout the summer. One row represents one bee, the plant genus in its pollen, and the proportion of that plant genus (one bee can have multiple rows).*
+
+```{r read-file-1}
+file1 <- read.csv("data_metabarcoding.csv", stringsAsFactors = FALSE, na.strings = "")
+```
+
+This file has `r nrow(file1)` rows and `r ncol(file1)` columns. Here are the first few rows:
+
+```{r head-file-1}
+knitr::kable(head(file1))
+```
+
+And here is the type of each column, as R reads it:
+
+```{r str-file-1}
+str(file1)
+```
+
+### Data dictionary for file 1: data_metabarcoding.csv
+
+| Variable | Description | Type | Units |
+|----------|-------------|------|-------|
+| `bee_id` | *identifies the bee* | *text/foreign key* |
+| `plant_genus` | *plant genus found in pollen* | *float* | 
+| `plant_proportion` | *plant proportion found in each pollen* | *float* | 
+
+## File 2: data_pl.csv
+
+- **Source:** *Collected by Haley Curtis during Summer 2025*
+- **Link:** *https://github.com/hec5351/WFS-Final-Project/blob/main/data_raw/data_pl.csv,*
+- **Date accessed:** *10/08/2026*
+- **License or terms of use:** *Private until publication*
+- **Citation:** *Citation to be generated upon publication*
+
+*This data were collected by Haley Curtis during the summer of 2025. The data were collected from pollen balls of honey bees and bumble bees across multiple habitats and sampling periods throughout the summer. One row represents one bee and the protein-to-lipid (P:L) values associated with it.*
+
+```{r read-file-2}
+file1 <- read.csv("data_pl.csv", stringsAsFactors = FALSE, na.strings = "")
+```
+
+This file has `r nrow(file1)` rows and `r ncol(file1)` columns. Here are the first few rows:
+
+```{r head-file-2}
+knitr::kable(head(file1))
+```
+
+And here is the type of each column, as R reads it:
+
+```{r str-file-2}
+str(file1)
+```
+
+### Data dictionary for file 2: data_pl.csv
+
+| Variable | Description | Type | Units |
+|----------|-------------|------|-------|
+| `bee_id` | *identifies the bee* | *text/foreign key* |
+| `bee_genus` | *genus of the bee* | *text* | 
+| `bee_caste` | *caste of the bee* | *text* | 
+| `date` | *date the bee was caught* | *date* | 
+| `site` | *site where the bee* | *text* | 
+| `site_type` | *site type where the bee was caught* | *text* | 
+| `sampling_period` | *sampling period where the bee was caught* | *text* |
+| `protein_concentration` | *protein concentration of the pollen* | *float* | 
+| `lipid_concentration` | *lipid concentration of the pollen* | *float* |
+| `pl_ratio` | *protein-to-lipid ratio of the pollen* | *float* | 
+
+# Planned Workflow
+
+*I plan to put these datasets into R Studio, run significant tests, and use them to report the crucial differences in plant and nutrient content.*
+
+## Data cleaning
+
+*I expect that I will need to filter out plants in low proportions in the pollen. This way, the dataset will not be dominated by irrelevant plants.*
+
+## Visualization
+
+*I plan to make violin plots of the data_pl dataset and a heatmap of the data_metabarcoding data set. That way, I will be able to compare macro-nutrient value differences in pollen and attribute them to specific plants. I will know the answers to my quesetions regarding differences between time, space, and genus.*
+
+## Analysis
+
+*I expect to know which pollens have low versus high protein content. From this, I can determine which plants specifically are causing these changes and identify important and vulnerable times for native bees.*
+
+# References
+
+*data source: https://github.com/hec5351/WFS-Final-Project*
+
+# Session Information
+
+```{r session-info}
+sessionInfo()
+```
