@@ -54,10 +54,9 @@ WFS-final-project/
 | `outputs_tables` | Tables produced by the scripts. |
 
 The project is stored in a GitHub repository: <https://github.com/hec5351/WFS-Final-Project>
+The report is published at <https://hec5351.github.io/WFS-Final-Project/>
 
 # Raw Data
-
-*Replace this paragraph with a sentence or two about your data overall: how many files you have, and where they came from.*
 
 These are the files currently in `data_raw/`:
 

@@ -32,3 +32,6 @@ differentially partition their resources across environmental contexts.
 **My data source**: This data was collected in central Pennsylvania during the Summer of 2026 via aerial netting of bumble bees and honey bees and removal of pollen with 
 tweezers. The sample size is 63.
 
+The project is stored in a GitHub repository: <https://github.com/hec5351/WFS-Final-Project>
+The report is published at <https://hec5351.github.io/WFS-Final-Project/>
+
